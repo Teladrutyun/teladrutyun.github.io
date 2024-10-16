@@ -3,25 +3,50 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Animated Spider Web Lines</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="icon" type="image/x-icon" href="./favicon.png" />
+    <title>“Teladrutyun”</title>
     <style>
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
       }
 
       body,
       html {
-        height: 100%;
-        overflow: hidden;
+        height: auto;
+        overflow: auto;
       }
 
       canvas {
-        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
         width: 100vw;
         height: 100vh;
-        background-color: #f3f3f3; /* Light background */
+        z-index: -1;
+        background-color: #f3f3f3;
+      }
+
+      /* Language switcher */
+      .language-switcher {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 20;
+        font-size: larger;
+        cursor: pointer;
+        margin-bottom: 20px;
+        color: #d6390d; /* Color for the switcher */
+        font-weight: bold; /* Bold font */
       }
 
       /* Text container styles */
@@ -31,58 +56,75 @@
         left: 50%;
         transform: translate(-50%, -50%);
         display: flex;
-        justify-content: space-between; /* Space the boxes equally */
-        align-items: stretch; /* Ensure boxes stretch to fill the container */
-        z-index: 10; /* Ensure text is above the canvas */
+        flex-direction: column;
+        align-items: center;
+        z-index: 10;
         color: #d6390d;
-        font-family: monospace;
-        font-size: large; /* Increased font size */
-        width: 90%; /* Responsive width */
-        max-width: 800px; /* Increased max width for larger screens */
-        min-height: 300px; /* Minimum height for better visibility */
+        font-size: xx-large;
+        width: 90%;
+        max-width: 800px;
+        min-height: 300px;
+        padding: 20px;
+        margin-top: 10px;
       }
 
       .text-box {
-        background-color: rgba(
-          255,
-          255,
-          255,
-          0.2
-        ); /* Reduced semi-transparent white */
+        background-color: rgba(255, 255, 255, 0.2);
         padding: 20px;
-        margin: 10px;
-        flex: 1; /* Allow boxes to be of equal size */
-        backdrop-filter: blur(2px); /* Reduced blur effect */
-        overflow: hidden; /* Prevent overflow */
-        min-width: 250px; /* Minimum width for smaller screens */
+        margin: 10px 0;
+        backdrop-filter: blur(2px);
+        overflow: hidden;
+        text-align: center;
+        font-size: larger;
+        display: none;
+        transition: opacity 0.8s ease-in-out;
+      }
+
+      .text-box.active {
+        display: block;
+        opacity: 1;
       }
 
       h2 {
         margin-bottom: 10px;
-        font-size: large; /* Increased heading font size */
+        font-size: x-large;
       }
 
       p {
-        font-size: medium; /* Increased paragraph font size */
+        font-size: large;
+      }
+
+      a p {
+        color: #d6390d;
+        text-decoration: underline;
+        text-decoration-color: #d6390d;
       }
 
       @media (max-width: 600px) {
         .text-container {
-          flex-direction: column; /* Stack boxes on small screens */
-          align-items: stretch; /* Stretch to full width */
+          font-size: large;
+          padding: 10px;
+          top: 75%;
         }
 
         .text-box {
-          margin: 5px 0; /* Adjust margin for stacked boxes */
-          min-width: 100%; /* Ensure boxes take full width */
+          padding: 15px;
+        }
+
+        .language-switcher {
+          font-size: medium;
         }
       }
     </style>
   </head>
   <body>
     <canvas id="webCanvas"></canvas>
+
+    <!-- Language Switcher -->
+    <div class="language-switcher" id="languageSwitcher">EN</div>
+
     <div class="text-container">
-      <div class="text-box">
+      <div id="armText" class="text-box active">
         <h2>«Թելադրություն» = «թել» + «դրություն»</h2>
         <p>
           Արդյոք մենք ենք ընտրում ինչպես շարժվել, թե՞ մեզ թելադրում են։ Ի՞նչ
@@ -90,27 +132,47 @@
           Գործը արտացոլում է հեղինակների ապրումներն այս հարցերի շուրջ։ Ձայնային
           ինստալյացիան հյուսում է գորգ լաբիրինթի տեսքով: Մեր գորգը կիսատ է, թե՞
           քանդված, որոշեք ինքներդ, բայց այն ունի գործվելու և ամբողջական դառնալու
-          կարիք։ Այցելուները հրավիրված են “ազատ” ընտրելու` թելադրվել, թե ոչ,
+          կարիք։ Այցելուները հրավիրված են “ազատ” ընտրելու թելադրվել, թե ոչ,
           ունենալով դիպչելու, ստեղծելու, լսելու, և գործելու հնարավորություն,
           որտեղ ամեն առաջին հայացքից փոքր և անտեսելի քայլ կամ հպում կարող է
           հանգեցնել փոփոխության։
         </p>
+        <br />
+        <a href="https://maps.app.goo.gl/yKkyaism63r2Y3Cr5">
+          <p>
+            <i class="fa-solid fa-location-dot"></i>
+            Ժողովրդական արվեստների թանգարան, Նոյեմբերի 1-30 ժամը 10-ից 6-ը
+          </p>
+        </a>
       </div>
-      <div class="text-box">
+
+      <div id="enText" class="text-box">
         <h2>“Teladrutyun” = “thread[tel]” + “situation[drutyun]”</h2>
         <p>
-          Are we choosing how to move, or are we being dictated? What to do?
-          Act? How to act in this situation? Just me? Who am I? The work
-          reflects the authors’ experiences regarding these questions. The sound
-          installation weaves itself in the form of a carpet labyrinth. Is our
-          carpet incomplete or broken? Decide for yourself, but it needs to be
-          acted upon and made whole. Visitors are invited to “freely” choose
-          whether to be dictated to or not, having the opportunity to touch,
-          create, listen, and act, where every seemingly small and invisible
-          step or touch can lead to change.
+          an Armenian term meaning "dictation," is a fusion of "tel," signifying
+          a thread or bond, and "drutyun," denoting a situation. This immersive
+          sound installation weaves a complex web of threads, evoking the
+          intricate design of a spider's web. Visitors are invited to traverse
+          this maze, exercising their free will, only to discover that the
+          threads extend across the space, leading to an unfinished carpet. The
+          installation offers a personalized auditory journey, as each path
+          taken and each thread encountered activates distinct soundscapes. The
+          interplay of different threads triggers a symphony of experiences.
+          Upon entering the web, visitors find themselves in a visually
+          confining space that simulates entrapment. Yet, it is their very
+          movements and gentlest touches that have the power to transform the
+          narrative they are composing in real-time.
         </p>
+        <br />
+        <a href="https://maps.app.goo.gl/yKkyaism63r2Y3Cr5">
+          <p>
+            <i class="fa-solid fa-location-dot"></i>
+            Folk Art Museum, Nov 1-30 between 10AM–6PM
+          </p>
+        </a>
       </div>
     </div>
+
     <script>
       const canvas = document.getElementById("webCanvas");
       const ctx = canvas.getContext("2d");
@@ -121,14 +183,15 @@
       }
 
       resizeCanvas();
+      window.addEventListener("load", resizeCanvas);
+      window.addEventListener("resize", resizeCanvas);
 
-      // Calculate diagonal of the screen to make sure the lines are longer than it
       const screenDiagonal = Math.sqrt(canvas.width ** 2 + canvas.height ** 2);
 
       class Line {
         constructor(x, y, length, angle, color, rotationSpeed, speedX, speedY) {
-          this.x = x; // Center X
-          this.y = y; // Center Y
+          this.x = x;
+          this.y = y;
           this.length = length;
           this.angle = angle;
           this.color = color;
@@ -138,11 +201,9 @@
         }
 
         update() {
-          // Move line across the screen
           this.x += this.speedX;
           this.y += this.speedY;
 
-          // Bounce off edges
           if (
             this.x <= -this.length / 2 ||
             this.x >= canvas.width + this.length / 2
@@ -154,15 +215,12 @@
           )
             this.speedY *= -1;
 
-          // Rotate the line
           this.angle += this.rotationSpeed;
           this.draw();
         }
 
         draw() {
           const halfLength = this.length / 2;
-
-          // Calculate start and end points of the line, rotating around its midpoint
           const xStart = this.x - halfLength * Math.cos(this.angle);
           const yStart = this.y - halfLength * Math.sin(this.angle);
           const xEnd = this.x + halfLength * Math.cos(this.angle);
@@ -172,7 +230,7 @@
           ctx.moveTo(xStart, yStart);
           ctx.lineTo(xEnd, yEnd);
           ctx.strokeStyle = this.color;
-          ctx.lineWidth = 2; // Thicker lines for visibility
+          ctx.lineWidth = 2;
           ctx.stroke();
         }
       }
@@ -180,32 +238,30 @@
       let linesArray = [];
       const numberOfLines = 20;
 
-      // Function to get random shade of #d6390d
       function getShadeOfColor() {
-        const baseColor = [214, 57, 13]; // RGB of #d6390d
-        const variation = Math.floor(Math.random() * 60) - 30; // Create slight variations
+        const baseColor = [214, 57, 13];
+        const variation = Math.floor(Math.random() * 60) - 30;
         return `rgb(${baseColor[0] + variation}, ${baseColor[1] + variation}, ${
           baseColor[2] + variation
         })`;
       }
 
-      // Create lines that are longer than the screen diagonal and move/rotate
       for (let i = 0; i < numberOfLines; i++) {
-        let startX = Math.random() * canvas.width; // Random start position
+        let startX = Math.random() * canvas.width;
         let startY = Math.random() * canvas.height;
-        let length = screenDiagonal * 5.5; // Line length is 5.5 times the diagonal of the screen
-        let angle = Math.random() * Math.PI * 2; // Random initial angle
-        let rotationSpeed = (Math.random() - 0.5) * 0.005; // Random rotation speed
-        let speedX = (Math.random() - 0.5) * 0.5; // Random movement speed in X direction
-        let speedY = (Math.random() - 0.5) * 0.5; // Random movement speed in Y direction
-        let color = getShadeOfColor();
+        let length = screenDiagonal * 5.5;
+        let angle = Math.random() * Math.PI * 2;
+        let rotationSpeed = (Math.random() - 0.5) * 0.0009; // Slower rotation
+        let speedX = (Math.random() - 0.5) * 1; // Slower speed
+        let speedY = (Math.random() - 0.5) * 1; // Slower speed
+
         linesArray.push(
           new Line(
             startX,
             startY,
             length,
             angle,
-            color,
+            getShadeOfColor(),
             rotationSpeed,
             speedX,
             speedY
@@ -221,37 +277,20 @@
 
       animate();
 
-      // Resize canvas if window size changes
-      window.addEventListener("resize", () => {
-        resizeCanvas();
-        linesArray = []; // Reinitialize lines to fit new screen size
+      // Language switcher functionality
+      const languageSwitcher = document.getElementById("languageSwitcher");
+      const armText = document.getElementById("armText");
+      const enText = document.getElementById("enText");
 
-        // Recalculate screen diagonal
-        const screenDiagonal = Math.sqrt(
-          canvas.width ** 2 + canvas.height ** 2
-        );
-
-        for (let i = 0; i < numberOfLines; i++) {
-          let startX = Math.random() * canvas.width;
-          let startY = Math.random() * canvas.height;
-          let length = screenDiagonal * 1.5; // Line length is 1.5 times the diagonal of the screen
-          let angle = Math.random() * Math.PI * 2;
-          let rotationSpeed = (Math.random() - 0.5) * 0.02;
-          let speedX = (Math.random() - 0.5) * 2;
-          let speedY = (Math.random() - 0.5) * 2;
-          let color = getShadeOfColor();
-          linesArray.push(
-            new Line(
-              startX,
-              startY,
-              length,
-              angle,
-              color,
-              rotationSpeed,
-              speedX,
-              speedY
-            )
-          );
+      languageSwitcher.addEventListener("click", () => {
+        if (armText.classList.contains("active")) {
+          armText.classList.remove("active");
+          enText.classList.add("active");
+          languageSwitcher.textContent = "AM";
+        } else {
+          armText.classList.add("active");
+          enText.classList.remove("active");
+          languageSwitcher.textContent = "EN";
         }
       });
     </script>
